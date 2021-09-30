@@ -1,6 +1,6 @@
 ---
 title: "Fundamentos_x"
-author: "Grupo A"
+author: "Grupo sA"
 date: "30/9/2021"
 output: html_document
 ---
