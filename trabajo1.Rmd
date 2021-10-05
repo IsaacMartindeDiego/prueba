@@ -1,5 +1,5 @@
 ---
-title: "Practica_MD_0"
+title: "Practica_2MD_0"
 author: "Grupo B. Elena, Guillermo, Sergio"
 date: "`r format(Sys.Date(), '%d de %B de %Y')`"
 output: html_document
