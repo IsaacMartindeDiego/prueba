@@ -1,15 +1,21 @@
 ---
-title: "Practica_2MD_0"
-author: "Grupo B. Elena, Guillermo, Sergio"
+title: "Practica_MD"
+author: "Grupo de Prueba"
 date: "`r format(Sys.Date(), '%d de %B de %Y')`"
-output: html_document
+output: bookdown::gitbook
 ---
 
-# 1. Introducción
+# Introducción
 
-# 2. Objetivos (del negocio)
+Bla Bla Bla
 
-# 3. Datos 
+# Objetivos (del negocio)
+
+Bla Bla Bla
+
+# Datos 
+
+Leemos los datos y comprobamos el tamaño de la base de datos.
 
 ```{r lectura de datos}
 diabetes <- read.csv("~/data/DSLab/Cursos/Data Mining /2018 ERICSSON_SEPT/14. Ejercicios Prácticos/diabetes.csv")
@@ -17,33 +23,37 @@ dim(diabetes)
 head(diabetes)
 summary(diabetes)
 ```
-# 4. Preprocesado de datos.
+Podemos observar cómo la variable respuesta *outcome* es continua cuando debería de ser una variable binaria. En el siguiente capítulo realizaremos un análisis exploratorio de los datos que nos servirá para estudiar el comportamiento de las variables y, en caso de ser necesario, transformar dichas variables.
 
-## 4.1. EDA. Exploratory Data Analysis.
+# Preprocesado de datos.
 
-## 4.2. Correlación entre las variables.
+Bla Bla Bla
 
-## 4.3. Transformación de variables
+## EDA. Exploratory Data Analysis.
 
-## 4.4. Imputacion de datos (datos faltantes)
+## Correlación entre las variables.
 
-# 5. Modelado
+## Transformación de variables
 
-# 5.1. k-NN
-# 5.2. Regresión Logística
-# 5.3. Clustering
-# 5.4. Arboles de Decisión
-# 5.5. Bosques Aleatorios
-# 5.6. Support Vector Machines
-# 5.7. Redes Neuronales
+## Imputacion de datos (datos faltantes)
 
-# 6. Evaluación
+# Modelado
 
-# 7. Visualización y Presentación de Resultados
+## k-NN
+## Regresión Logística
+## Clustering
+## Arboles de Decisión
+## Bosques Aleatorios
+## Support Vector Machines
+## Redes Neuronales
 
-# 8. Puesta en producción
+# Evaluación
 
-# 9. Actualización del modelo...
+# Visualización y Presentación de Resultados
+
+# Puesta en producción
+
+# Actualización del modelo...
 Vuelta a empezar.
 
 
