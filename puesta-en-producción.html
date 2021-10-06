@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8 Puesta en producción | Practica_MD</title>
   <meta name="description" content="8 Puesta en producción | Practica_MD" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8 Puesta en producción | Practica_MD" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="visualización-y-presentación-de-resultados.html"/>
 <link rel="next" href="actualización-del-modelo.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,8 +49,9 @@
 
 
 
-
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 </head>
 
 <body>
@@ -132,11 +135,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> Objetivos (del negocio)</a></li>
 <li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a></li>
-<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
-<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#pregnancies"><i class="fa fa-check"></i><b>4.2.1</b> Pregnancies:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
+<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
@@ -181,7 +186,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -200,6 +204,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -220,10 +225,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": false,
 "toc": {
 "collapse": "subsection"
-},
-"search": false
+}
 });
 });
 </script>

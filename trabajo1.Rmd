@@ -9,6 +9,11 @@ output: bookdown::gitbook
 
 Bla Bla Bla
 
+Cargamos las librerías que vamos a necesitar para esta práctica.
+```{r librerías}
+library(ggplot2) # Gráficos
+```
+
 # Objetivos (del negocio)
 
 Bla Bla Bla
@@ -25,13 +30,51 @@ summary(diabetes)
 ```
 Podemos observar cómo la variable respuesta *outcome* es continua cuando debería de ser una variable binaria. En el siguiente capítulo realizaremos un análisis exploratorio de los datos que nos servirá para estudiar el comportamiento de las variables y, en caso de ser necesario, transformar dichas variables.
 
-# Preprocesado de datos.
+Las variables y su explicación aparecen en la siguiente lista:
+
+Nombre | Descripción
+-------| -----------
+Pregnancies | bla bla bla
+Glucose | bla bla bla
+Outcome | variable respuesta, 1 si es diabetes igual a sí.
+
+
+# Preprocesado de datos
 
 Bla Bla Bla
 
 ## EDA. Exploratory Data Analysis.
 
+En primer lugar, corregimos la variable salida "Outcome", convirtiéndola en binaria (factor).
+
+```{r binarización}
+diabetes$Outcome=as.factor(diabetes$Outcome)
+```
+
+```{r EDA}
+attach(diabetes)
+summary(Pregnancies)
+table(Pregnancies)
+ggplot(data=diabetes,aes(Pregnancies))+
+  geom_density()+
+  ggtitle("Función de Densidad de la variable Pregnancies")
+```
+
 ## Correlación entre las variables.
+
+Estudiamos la correlación entre las variables explicativas y la variable respuesta.
+
+### Pregnancies:
+
+```{r Corr, echo=FALSE}
+ggplot(data=diabetes, aes(x=Pregnancies, fill=Outcome)) + geom_density(alpha=.3)
+```
+Realizamos un contraste de hipótesis (t.test) para comprobar si hay diferencias significativas entre los dos grupos de interés:
+
+```{r TEST_PREGNANCIES}
+t.test(Pregnancies~Outcome)
+```
+Se puede concluir que la variable *Pregnancies* es importante para determinar si una mujer va a ser diabética o no.
 
 ## Transformación de variables
 

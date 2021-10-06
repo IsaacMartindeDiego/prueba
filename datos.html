@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Datos | Practica_MD</title>
   <meta name="description" content="3 Datos | Practica_MD" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Datos | Practica_MD" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,9 @@
   
   
 <link rel="prev" href="objetivos-del-negocio.html"/>
-<link rel="next" href="preprocesado-de-datos-.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="preprocesado-de-datos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,8 +49,9 @@
 
 
 
-
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 </head>
 
 <body>
@@ -132,11 +135,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> Objetivos (del negocio)</a></li>
 <li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
-<li class="chapter" data-level="4" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos.</a><ul>
-<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
-<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a></li>
-<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
-<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos-.html"><a href="preprocesado-de-datos-.html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
+<li class="chapter" data-level="4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
+<li class="chapter" data-level="4.2" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#pregnancies"><i class="fa fa-check"></i><b>4.2.1</b> Pregnancies:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#transformación-de-variables"><i class="fa fa-check"></i><b>4.3</b> Transformación de variables</a></li>
+<li class="chapter" data-level="4.4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#imputacion-de-datos-datos-faltantes"><i class="fa fa-check"></i><b>4.4</b> Imputacion de datos (datos faltantes)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="modelado.html"><a href="modelado.html"><i class="fa fa-check"></i><b>5</b> Modelado</a><ul>
 <li class="chapter" data-level="5.1" data-path="modelado.html"><a href="modelado.html#k-nn"><i class="fa fa-check"></i><b>5.1</b> k-NN</a></li>
@@ -171,10 +176,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="datos" class="section level1">
 <h1><span class="header-section-number">3</span> Datos</h1>
 <p>Leemos los datos y comprobamos el tamaño de la base de datos.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="datos.html#cb1-1"></a>diabetes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;~/data/DSLab/Cursos/Data Mining /2018 ERICSSON_SEPT/14. Ejercicios Prácticos/diabetes.csv&quot;</span>)</span>
-<span id="cb1-2"><a href="datos.html#cb1-2"></a><span class="kw">dim</span>(diabetes)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="datos.html#cb2-1"></a>diabetes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;~/data/DSLab/Cursos/Data Mining /2018 ERICSSON_SEPT/14. Ejercicios Prácticos/diabetes.csv&quot;</span>)</span>
+<span id="cb2-2"><a href="datos.html#cb2-2"></a><span class="kw">dim</span>(diabetes)</span></code></pre></div>
 <pre><code>## [1] 768   9</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="datos.html#cb3-1"></a><span class="kw">head</span>(diabetes)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="datos.html#cb4-1"></a><span class="kw">head</span>(diabetes)</span></code></pre></div>
 <pre><code>##   Pregnancies Glucose BloodPressure SkinThickness Insulin  BMI
 ## 1           6     148            72            35       0 33.6
 ## 2           1      85            66            29       0 26.6
@@ -189,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4                    0.167  21       0
 ## 5                    2.288  33       1
 ## 6                    0.201  30       0</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="datos.html#cb5-1"></a><span class="kw">summary</span>(diabetes)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="datos.html#cb6-1"></a><span class="kw">summary</span>(diabetes)</span></code></pre></div>
 <pre><code>##   Pregnancies        Glucose      BloodPressure    SkinThickness  
 ##  Min.   : 0.000   Min.   :  0.0   Min.   :  0.00   Min.   : 0.00  
 ##  1st Qu.: 1.000   1st Qu.: 99.0   1st Qu.: 62.00   1st Qu.: 0.00  
@@ -212,6 +217,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.:1.000  
 ##  Max.   :1.000</code></pre>
 <p>Podemos observar cómo la variable respuesta <em>outcome</em> es continua cuando debería de ser una variable binaria. En el siguiente capítulo realizaremos un análisis exploratorio de los datos que nos servirá para estudiar el comportamiento de las variables y, en caso de ser necesario, transformar dichas variables.</p>
+<p>Las variables y su explicación aparecen en la siguiente lista:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Nombre</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pregnancies</td>
+<td>bla bla bla</td>
+</tr>
+<tr class="even">
+<td>Glucose</td>
+<td>bla bla bla</td>
+</tr>
+<tr class="odd">
+<td>Outcome</td>
+<td>variable respuesta, 1 si es diabetes igual a sí.</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
@@ -219,11 +247,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="objetivos-del-negocio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="preprocesado-de-datos-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="preprocesado-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -242,6 +269,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -262,10 +290,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": false,
 "toc": {
 "collapse": "subsection"
-},
-"search": false
+}
 });
 });
 </script>
