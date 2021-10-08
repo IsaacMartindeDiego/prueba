@@ -38,6 +38,25 @@ Pregnancies | bla bla bla
 Glucose | bla bla bla
 Outcome | variable respuesta, 1 si es diabetes igual a sí.
 
+## Particiones
+
+```{r particiones}
+n_total = dim(diabetes)[1]
+n_train = floor(0.6 * n_total) # el 60% de la muestra se usa para entrenar los modelos
+n_test = floor(0.2 * n_total) # el 20% para test
+n_validation = n_total - n_train - n_test # el resto para validación
+
+indices_total = seq(1:n_total)
+set.seed(233834)
+indices_train = sample(indices_total, n_train)
+indices_test = sample(indices_total[-indices_train],n_test)
+indices_validation=indices_total[-c(indices_train,indices_test)]
+
+diabetes_train=diabetes[indices_train,]
+diabetes_test = diabetes[indices_test,]
+diabetes_validation = diabetes[indices_validation,]
+
+```
 
 # Preprocesado de datos
 
@@ -52,7 +71,7 @@ diabetes$Outcome=as.factor(diabetes$Outcome)
 ```
 
 ```{r EDA}
-attach(diabetes)
+attach(diabetes_train)
 summary(Pregnancies)
 table(Pregnancies)
 ggplot(data=diabetes,aes(Pregnancies))+
@@ -77,6 +96,21 @@ t.test(Pregnancies~Outcome)
 Se puede concluir que la variable *Pregnancies* es importante para determinar si una mujer va a ser diabética o no.
 
 ## Transformación de variables
+Bla bla bla
+
+```{r Skin}
+hist(SkinThickness)
+```
+
+Aparentemente hay valores 0 que corresponden con mujeres a las que no se les tomó esta medida. 
+
+```{r Skin_transformation}
+Skin_cat = cut(SkinThickness,c(-1,0.1,20,40,1000),labels=c("NS/NC","Bajo","Medio","Alto"))
+table(Skin_cat,Outcome)
+chisq.test(table(Skin_cat,Outcome)
+)
+```
+Hemos transformado la variable, categorizándola en 4 niveles. La nueva variable resulta ser estadísticamente significativa. Es decir, es una variable que debemos tener en cuenta en la construcción de los modelos de Machine Learning (ML).
 
 ## Imputacion de datos (datos faltantes)
 

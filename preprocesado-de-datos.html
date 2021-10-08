@@ -134,7 +134,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> Objetivos (del negocio)</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones"><i class="fa fa-check"></i><b>3.1</b> Particiones</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
 <li class="chapter" data-level="4.2" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
@@ -179,18 +181,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="eda.-exploratory-data-analysis." class="section level2">
 <h2><span class="header-section-number">4.1</span> EDA. Exploratory Data Analysis.</h2>
 <p>En primer lugar, corregimos la variable salida “Outcome”, convirtiéndola en binaria (factor).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="preprocesado-de-datos.html#cb8-1"></a>diabetes<span class="op">$</span>Outcome=<span class="kw">as.factor</span>(diabetes<span class="op">$</span>Outcome)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preprocesado-de-datos.html#cb9-1"></a><span class="kw">attach</span>(diabetes)</span>
-<span id="cb9-2"><a href="preprocesado-de-datos.html#cb9-2"></a><span class="kw">summary</span>(Pregnancies)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="preprocesado-de-datos.html#cb9-1"></a>diabetes<span class="op">$</span>Outcome=<span class="kw">as.factor</span>(diabetes<span class="op">$</span>Outcome)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="preprocesado-de-datos.html#cb10-1"></a><span class="kw">attach</span>(diabetes_train)</span>
+<span id="cb10-2"><a href="preprocesado-de-datos.html#cb10-2"></a><span class="kw">summary</span>(Pregnancies)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   1.000   3.000   3.845   6.000  17.000</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="preprocesado-de-datos.html#cb11-1"></a><span class="kw">table</span>(Pregnancies)</span></code></pre></div>
+##   0.000   1.000   3.000   3.811   6.000  17.000</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="preprocesado-de-datos.html#cb12-1"></a><span class="kw">table</span>(Pregnancies)</span></code></pre></div>
 <pre><code>## Pregnancies
-##   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  17 
-## 111 135 103  75  68  57  50  45  38  28  24  11   9  10   2   1   1</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="preprocesado-de-datos.html#cb13-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>diabetes,<span class="kw">aes</span>(Pregnancies))<span class="op">+</span></span>
-<span id="cb13-2"><a href="preprocesado-de-datos.html#cb13-2"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
-<span id="cb13-3"><a href="preprocesado-de-datos.html#cb13-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Función de Densidad de la variable Pregnancies&quot;</span>)</span></code></pre></div>
+##  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 17 
+## 71 74 62 47 42 40 30 24 20 16 11  8  5  7  2  1</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos.html#cb14-1"></a><span class="kw">ggplot</span>(<span class="dt">data=</span>diabetes,<span class="kw">aes</span>(Pregnancies))<span class="op">+</span></span>
+<span id="cb14-2"><a href="preprocesado-de-datos.html#cb14-2"></a><span class="st">  </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
+<span id="cb14-3"><a href="preprocesado-de-datos.html#cb14-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Función de Densidad de la variable Pregnancies&quot;</span>)</span></code></pre></div>
 <p><img src="trabajo1_files/figure-html/EDA-1.png" width="672" /></p>
 </div>
 <div id="correlación-entre-las-variables." class="section level2">
@@ -200,23 +202,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.2.1</span> Pregnancies:</h3>
 <p><img src="trabajo1_files/figure-html/Corr-1.png" width="672" />
 Realizamos un contraste de hipótesis (t.test) para comprobar si hay diferencias significativas entre los dos grupos de interés:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="preprocesado-de-datos.html#cb14-1"></a><span class="kw">t.test</span>(Pregnancies<span class="op">~</span>Outcome)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="preprocesado-de-datos.html#cb15-1"></a><span class="kw">t.test</span>(Pregnancies<span class="op">~</span>Outcome)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  Pregnancies by Outcome
-## t = -5.907, df = 455.96, p-value = 6.822e-09
+## t = -4.4586, df = 249.3, p-value = 1.248e-05
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -2.089219 -1.046125
+##  -2.267607 -0.878051
 ## sample estimates:
 ## mean in group 0 mean in group 1 
-##        3.298000        4.865672</code></pre>
+##        3.284314        4.857143</code></pre>
 <p>Se puede concluir que la variable <em>Pregnancies</em> es importante para determinar si una mujer va a ser diabética o no.</p>
 </div>
 </div>
 <div id="transformación-de-variables" class="section level2">
 <h2><span class="header-section-number">4.3</span> Transformación de variables</h2>
+<p>Bla bla bla</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="preprocesado-de-datos.html#cb17-1"></a><span class="kw">hist</span>(SkinThickness)</span></code></pre></div>
+<p><img src="trabajo1_files/figure-html/Skin-1.png" width="672" /></p>
+<p>Aparentemente hay valores 0 que corresponden con mujeres a las que no se les tomó esta medida.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="preprocesado-de-datos.html#cb18-1"></a>Skin_cat =<span class="st"> </span><span class="kw">cut</span>(SkinThickness,<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="fl">0.1</span>,<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">1000</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;NS/NC&quot;</span>,<span class="st">&quot;Bajo&quot;</span>,<span class="st">&quot;Medio&quot;</span>,<span class="st">&quot;Alto&quot;</span>))</span>
+<span id="cb18-2"><a href="preprocesado-de-datos.html#cb18-2"></a><span class="kw">table</span>(Skin_cat,Outcome)</span></code></pre></div>
+<pre><code>##         Outcome
+## Skin_cat   0   1
+##    NS/NC  91  50
+##    Bajo   62   9
+##    Medio 130  75
+##    Alto   23  20</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="preprocesado-de-datos.html#cb20-1"></a><span class="kw">chisq.test</span>(<span class="kw">table</span>(Skin_cat,Outcome)</span>
+<span id="cb20-2"><a href="preprocesado-de-datos.html#cb20-2"></a>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table(Skin_cat, Outcome)
+## X-squared = 18.213, df = 3, p-value = 0.0003975</code></pre>
+<p>Hemos transformado la variable, categorizándola en 4 niveles. La nueva variable resulta ser estadísticamente significativa. Es decir, es una variable que debemos tener en cuenta en la construcción de los modelos de Machine Learning (ML).</p>
 </div>
 <div id="imputacion-de-datos-datos-faltantes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Imputacion de datos (datos faltantes)</h2>

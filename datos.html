@@ -134,7 +134,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
 <li class="chapter" data-level="2" data-path="objetivos-del-negocio.html"><a href="objetivos-del-negocio.html"><i class="fa fa-check"></i><b>2</b> Objetivos (del negocio)</a></li>
-<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a></li>
+<li class="chapter" data-level="3" data-path="datos.html"><a href="datos.html"><i class="fa fa-check"></i><b>3</b> Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="datos.html"><a href="datos.html#particiones"><i class="fa fa-check"></i><b>3.1</b> Particiones</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html"><i class="fa fa-check"></i><b>4</b> Preprocesado de datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#eda.-exploratory-data-analysis."><i class="fa fa-check"></i><b>4.1</b> EDA. Exploratory Data Analysis.</a></li>
 <li class="chapter" data-level="4.2" data-path="preprocesado-de-datos.html"><a href="preprocesado-de-datos.html#correlación-entre-las-variables."><i class="fa fa-check"></i><b>4.2</b> Correlación entre las variables.</a><ul>
@@ -240,6 +242,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+<div id="particiones" class="section level2">
+<h2><span class="header-section-number">3.1</span> Particiones</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="datos.html#cb8-1"></a>n_total =<span class="st"> </span><span class="kw">dim</span>(diabetes)[<span class="dv">1</span>]</span>
+<span id="cb8-2"><a href="datos.html#cb8-2"></a>n_train =<span class="st"> </span><span class="kw">floor</span>(<span class="fl">0.6</span> <span class="op">*</span><span class="st"> </span>n_total) <span class="co"># el 60% de la muestra se usa para entrenar los modelos</span></span>
+<span id="cb8-3"><a href="datos.html#cb8-3"></a>n_test =<span class="st"> </span><span class="kw">floor</span>(<span class="fl">0.2</span> <span class="op">*</span><span class="st"> </span>n_total) <span class="co"># el 20% para test</span></span>
+<span id="cb8-4"><a href="datos.html#cb8-4"></a>n_validation =<span class="st"> </span>n_total <span class="op">-</span><span class="st"> </span>n_train <span class="op">-</span><span class="st"> </span>n_test <span class="co"># el resto para validación</span></span>
+<span id="cb8-5"><a href="datos.html#cb8-5"></a></span>
+<span id="cb8-6"><a href="datos.html#cb8-6"></a>indices_total =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span>n_total)</span>
+<span id="cb8-7"><a href="datos.html#cb8-7"></a><span class="kw">set.seed</span>(<span class="dv">233834</span>)</span>
+<span id="cb8-8"><a href="datos.html#cb8-8"></a>indices_train =<span class="st"> </span><span class="kw">sample</span>(indices_total, n_train)</span>
+<span id="cb8-9"><a href="datos.html#cb8-9"></a>indices_test =<span class="st"> </span><span class="kw">sample</span>(indices_total[<span class="op">-</span>indices_train],n_test)</span>
+<span id="cb8-10"><a href="datos.html#cb8-10"></a>indices_validation=indices_total[<span class="op">-</span><span class="kw">c</span>(indices_train,indices_test)]</span>
+<span id="cb8-11"><a href="datos.html#cb8-11"></a></span>
+<span id="cb8-12"><a href="datos.html#cb8-12"></a>diabetes_train=diabetes[indices_train,]</span>
+<span id="cb8-13"><a href="datos.html#cb8-13"></a>diabetes_test =<span class="st"> </span>diabetes[indices_test,]</span>
+<span id="cb8-14"><a href="datos.html#cb8-14"></a>diabetes_validation =<span class="st"> </span>diabetes[indices_validation,]</span></code></pre></div>
+</div>
 </div>
             </section>
 
